@@ -9,14 +9,25 @@ const userStore = useUserStore();
 const router = useRouter();
 
 const form = ref({
-  account: '',
+  phone:'',
+  account:'',
+  user_level: '', // 绑定 user_level
   password: '',
-  user_level: null, // 绑定 user_level
   confirmPassword: ''
 });
 
 const rules = {
-  account: [{ required: true, message: '用户名不能为空', trigger: 'blur' }],
+  account: [{ message: '用户名不能为空', trigger: 'blur' }],
+  phone:[{ 
+      required: true, 
+      message: '手机号不能为空', 
+      trigger: 'blur' 
+    },
+    {
+      pattern: /^1[3-9]\d{9}$/, 
+      message: '请输入有效的手机号', 
+      trigger: 'blur' 
+    }],
   password: [
     { required: true, message: '密码不能为空', trigger: 'blur' },
     { min: 6, max: 14, message: '密码长度为6~14', trigger: 'blur' }
@@ -37,11 +48,12 @@ const rules = {
 const formRef = ref(null);
 
 const doRegister = () => {
-  const { account, password, user_level } = form.value;
+  const { phone,account,user_level, password} = form.value;
   formRef.value.validate(async (valid) => {
     if (valid) {
+      console.log(user_level);
       try {
-        const res = await userStore.register({ account, password, user_level }); // 传递 user_level
+        const res = await userStore.register({ phone,account,user_level, password }); // 传递 user_level
         if (res.success) {
           ElMessage({ type: 'success', message: '注册成功！' });
           router.push('/login');  // 注册成功后跳转到登录页面
@@ -57,8 +69,8 @@ const doRegister = () => {
 
 // 下拉选项和选中的值（设置对应的 1 和 2）
 const options = ref([
-  { value: 1, label: '消费者' },  // 1 代表消费者
-  { value: 2, label: '商家' }     // 2 代表商家
+  { value: '0', label: '消费者' },  // 0 代表消费者
+  { value: '1', label: '商家' }     // 1 代表商家
 ]);
 
 </script>
@@ -85,8 +97,11 @@ const options = ref([
         <div class="account-box">
           <div class="form">
             <el-form :model="form" :rules="rules" label-position="left" label-width="80px" status-icon ref="formRef">
+              <el-form-item prop="phone" label="手机号" class="form-item">
+                <el-input v-model="form.phone" placeholder="请输入有效手机号" />
+              </el-form-item>
               <el-form-item prop="account" label="用户名" class="form-item">
-                <el-input v-model="form.account" placeholder="请输入用户名" />
+                <el-input v-model="form.account" placeholder="若空则默认手机号" />
               </el-form-item>
               <el-form-item prop="user_level" label="账号身份" class="form-item">
                 <el-select v-model="form.user_level" placeholder="请选择">
@@ -94,7 +109,7 @@ const options = ref([
                    v-for="item in options"
                    :key="item.value"
                    :label="item.label"
-                   :value="item.value">  <!-- 这里绑定的是 1 或 2 -->
+                   :value="item.value">  
                  </el-option>
                 </el-select>
               </el-form-item>
