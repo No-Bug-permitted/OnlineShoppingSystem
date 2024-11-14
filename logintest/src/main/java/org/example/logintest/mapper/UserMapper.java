@@ -7,14 +7,12 @@ import org.example.logintest.pojo.User;
 import java.util.List;
 @Mapper
 public interface UserMapper {
-    @Select("select * from user where user_id=#{user_id}")
-    User selectUserById(Integer user_id);
-    @Select("select * from user where username=#{username}")
-    User selectUserByName(String username);
-    List<User> selectAll();
+    @Select("select * from user where phone=#{phone}")
+    User queryUserByPhone(String phone);
 
-    @Insert("insert into user(username,password,email,user_role) values(#{username},#{password},#{email},#{user_role})")
-    void register(String username, String password, String email, String user_role);
+    @Insert("insert into user(username,password,user_role,phone) values(#{username},#{password},#{user_role},#{phone})")
+    void register(String username, String password, String user_role, String phone);
+
     int addUser(User user);
     int deleteUser(int user_id);
 }

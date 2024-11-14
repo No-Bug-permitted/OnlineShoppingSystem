@@ -9,18 +9,20 @@ import org.example.logintest.pojo.User;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
+
     @Override
-    public User selectUserById(Integer user_id) {
-        return userMapper.selectUserById(user_id);
-    }
-    @Override
-    public User selectUserByName(String username) {
-        return userMapper.selectUserByName(username);
+    public User queryUserByPhone(String phone) {
+        return userMapper.queryUserByPhone(phone);
     }
 
     @Override
-    public void register(String username, String password, String email, String role) {
-        userMapper.register(username,password,"123@com","admin");
+    public void register(String username, String password, String user_role, String phone) {
+        if(username!=null){
+            userMapper.register(username,password,user_role,phone);
+        }
+        else{
+            userMapper.register(phone,password,user_role,phone);
+        }
     }
 
 }

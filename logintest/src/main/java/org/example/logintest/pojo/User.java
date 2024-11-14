@@ -1,13 +1,16 @@
 package org.example.logintest.pojo;
 
 public class User {
-    Integer user_id;
-    String username;
-    String password;
-    String email="123@qq.com";
-    String phone;
-    String user_role="admin";
-    String created_at;
+    private Integer user_id;
+    private String username;
+    private String password;
+    private String user_role;
+    private String phone;
+    private String avater;
+    private String sex;
+    private String token;
+    private Integer isdelete;
+
     public Integer getUser_id() {
         return user_id;
     }
@@ -32,12 +35,12 @@ public class User {
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUser_role() {
+        return user_role;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUser_role(String user_role) {
+        this.user_role = user_role;
     }
 
     public String getPhone() {
@@ -48,23 +51,37 @@ public class User {
         this.phone = phone;
     }
 
-    public String getUser_role() {
-        return user_role;
+    public String getAvater() {
+        return avater;
     }
 
-    public void setUser_role(String user_role) {
-        this.user_role = user_role;
+    public void setAvater(String avater) {
+        this.avater = avater;
     }
 
-    public String getCreated_at() {
-        return created_at;
+    public String getSex() {
+        return sex;
     }
 
-    public void setCreated_at(String created_at) {
-        this.created_at = created_at;
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
+    public String getToken() {
+        return token;
+    }
 
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public Integer getIsdelete() {
+        return isdelete;
+    }
+
+    public void setIsdelete(Integer isdelete) {
+        this.isdelete = isdelete;
+    }
 
     @Override
     public String toString() {
@@ -72,10 +89,12 @@ public class User {
                 "user_id=" + user_id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
                 ", user_role='" + user_role + '\'' +
-                ", created_at='" + created_at + '\'' +
+                ", phone='" + phone + '\'' +
+                ", avater='" + avater + '\'' +
+                ", sex='" + sex + '\'' +
+                ", token='" + token + '\'' +
+                ", isdelete=" + isdelete +
                 '}';
     }
 }
