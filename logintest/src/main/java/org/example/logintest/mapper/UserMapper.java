@@ -7,7 +7,7 @@ import org.example.logintest.pojo.User;
 import java.util.List;
 @Mapper
 public interface UserMapper {
-    @Select("select * from user where phone=#{phone}")
+    @Select("select user_id,username,password,user_role,phone,avatar,sex,token from user where phone=#{phone}")
     User queryUserByPhone(String phone);
 
     @Insert("insert into user(username,password,user_role,phone) values(#{username},#{password},#{user_role},#{phone})")

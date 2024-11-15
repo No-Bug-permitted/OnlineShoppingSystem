@@ -1,15 +1,18 @@
 package org.example.logintest.pojo;
 
+import java.util.Map;
+
 public class Result<T> {
+    private static final Map <String, Object> map = null;
     private Integer code;
     private String message;
     private T data;
     public Result(){
 
     }
-    public Result(Integer i, String success, T data) {
+    public Result(Integer i, String message, T data) {
         this.code = i;
-        this.message = success;
+        this.message = message;
         this.data = data;
     }
 

@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/user")
 @Validated//参数校验
@@ -45,20 +46,28 @@ public class UserController {
         }
     }*/
     //@PostMapping("/login")
-    @RequestMapping ("/login")
-    public Result login(@Pattern(regexp ="^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\\d{8}$" ) String phone,
-                        @Pattern(regexp ="^[0-9]{6,18}$" ) String password){
-        User u=userService.queryUserByPhone(phone);
+    @PostMapping ("/login")
+    /*public Result login(@Pattern(regexp ="^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\\d{8}$" ) String account,
+                        @Pattern(regexp ="^[0-9]{6,18}$" ) String password){*/
+        public Result login(@RequestBody User user){
+        System.out.println("有人发请求");
+        if(user.account!=null)
+                user.setPhone(user.account);
+        System.out.println(user.getPhone());
+        System.out.println(user.getPassword());
+        User u=userService.queryUserByPhone(user.getPhone());
+        System.out.println(u);
         if(u==null){
             return Result.error("用户不存在");
         }
 
-       if(u.getPassword().equals(password)){//明文传输，后续需加密
+       if(u.getPassword().equals(user.getPassword())){//明文传输，后续需加密
            Map<String, Object> claims=new HashMap<>();
            claims.put("id",u.getUser_id());
            claims.put("phone",u.getPhone());
            String token=JwtUtil.generateToken(claims);
-           return Result.success(token);
+           u.setToken(token);
+           return Result.success(u.toString());
        }else{
            return Result.error("密码错误");
        }

@@ -1,12 +1,15 @@
 package org.example.logintest.pojo;
 
+import java.util.Objects;
+
 public class User {
+    public String account;
     private Integer user_id;
     private String username;
     private String password;
     private String user_role;
     private String phone;
-    private String avater;
+    private String avatar;
     private String sex;
     private String token;
     private Integer isdelete;
@@ -52,11 +55,11 @@ public class User {
     }
 
     public String getAvater() {
-        return avater;
+        return avatar;
     }
 
     public void setAvater(String avater) {
-        this.avater = avater;
+        this.avatar = avater;
     }
 
     public String getSex() {
@@ -91,7 +94,7 @@ public class User {
                 ", password='" + password + '\'' +
                 ", user_role='" + user_role + '\'' +
                 ", phone='" + phone + '\'' +
-                ", avater='" + avater + '\'' +
+                ", avatar='" + avatar + '\'' +
                 ", sex='" + sex + '\'' +
                 ", token='" + token + '\'' +
                 ", isdelete=" + isdelete +

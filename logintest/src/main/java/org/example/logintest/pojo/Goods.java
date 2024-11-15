@@ -83,18 +83,28 @@ public class Goods {
         this.stock = stock;
     }
 
-    @Override
-    public String toString() {
-        return "Goods{" +
-                "goods_id='" + goods_id + '\'' +
-                ", shop_id='" + shop_id + '\'' +
-                ", name='" + name + '\'' +
-                ", cateGory=" + cateGory +
-                ", goods_img='" + goods_img + '\'' +
-                ", description='" + description + '\'' +
-                ", price='" + price + '\'' +
-                ", specifications='" + specifications + '\'' +
-                ", stock=" + stock +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Goods{" +
+//                "goods_id='" + goods_id + '\'' +
+//                ", shop_id='" + shop_id + '\'' +
+//                ", name='" + name + '\'' +
+//                ", cateGory=" + cateGory +
+//                ", goods_img='" + goods_img + '\'' +
+//                ", description='" + description + '\'' +
+//                ", price='" + price + '\'' +
+//                ", specifications='" + specifications + '\'' +
+//                ", stock=" + stock +
+//                '}';
+//    }
+@Override
+public String toString() {
+    return "{" +
+            "id='" + goods_id + '\'' +
+            ", name='" + name + '\'' +
+            ", desc='" + description + '\'' +
+            ", price='" + price + '\'' +
+            ", picture='" + goods_img + '\'' +
+            '}'+"\r\n";
+}
 }
