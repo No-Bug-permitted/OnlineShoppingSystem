@@ -28,20 +28,22 @@ public class GoodsController {
                 entry("commentCount", "5"),
                 entry("collectCount", "9999999"),
                 entry("mainPictures", List.of(
-                        "https://yanxuan-item.nosdn.127.net/21d2e9b754487aa3030ce105493a9473.jpg",
-                        "https://yanxuan-item.nosdn.127.net/adb0345dc57c2589671f41de805d2105.jpg"
+                        "https://img12.360buyimg.com/n1/jfs/t1/189699/4/52806/137891/673713fdF70464e57/79702edd8560befd.jpg.avif",
+                        "https://img12.360buyimg.com/n1/jfs/t1/191241/24/53837/163016/673713fcF3668d856/ba0d99cc9faa2c1a.jpg.avif",
+                        "https://img12.360buyimg.com/n1/jfs/t1/225744/5/25461/68970/66fad379F2d7ba810/4cd8eb1659a10bf5.jpg.avif"
                 )),
                 entry("specs", List.of(
                         Map.of(
-                                "name", "花型",
+                                "name", "功能",
                                 "values", List.of(
-                                        Map.of("name", "花与熊", "picture", "https://yanxuan-item.nosdn.127.net/ec3b277074be06a76cfea97fb6f0becc.png")
+                                        Map.of("name", "镇店综合", "picture", "https://img12.360buyimg.com/n9/s40x40_jfs/t1/189699/4/52806/137891/673713fdF70464e57/79702edd8560befd.jpg.avif"),
+                                        Map.of("name", "淡化黑眼圈", "picture", "https://img12.360buyimg.com/n9/s40x40_jfs/t1/188824/31/52051/175340/67371207F6b3a1ef4/de83624196a73829.jpg.avif")
                                 )
                         ),
                         Map.of(
-                                "name", "尺码",
+                                "name", "规格",
                                 "values", List.of(
-                                        Map.of("name", "90cm", "picture", "https://example.com/default.png")
+                                        Map.of("name", "15ml", "picture", "https://t15.baidu.com/it/u=3846800817,2248368687&fm=224&app=112&f=JPEG?w=500&h=500")
                                 )
                         )
                 )),
@@ -51,9 +53,21 @@ public class GoodsController {
                                 "skuCode", "300248014",
                                 "price", "199.00",
                                 "oldPrice", "199.00",
+                                "inventory", 4912,
                                 "specs", List.of(
-                                        Map.of("name", "花型", "valueName", "花与熊"),
-                                        Map.of("name", "尺码", "valueName", "90ml")
+                                        Map.of("name", "功能", "valueName", "镇店综合"),
+                                        Map.of("name", "规格", "valueName", "15ml")
+                                )
+                        ),
+                        Map.of(
+                                "id", "300248015",  // 新的 id
+                                "skuCode", "300248015",  // 新的 skuCode
+                                "price", "199.00",
+                                "oldPrice", "199.00",
+                                "inventory", 4912,
+                                "specs", List.of(
+                                        Map.of("name", "功能", "valueName", "淡化黑眼圈"),
+                                        Map.of("name", "规格", "valueName", "15ml")
                                 )
                         )
                 )),
@@ -78,8 +92,8 @@ public class GoodsController {
                 )),
                 entry("details", Map.of(
                         "pictures", List.of(
-                                "https://yanxuan-item.nosdn.127.net/example1.jpg",
-                                "https://yanxuan-item.nosdn.127.net/example2.jpg"
+                                "http://img30.360buyimg.com/popWareDetail/jfs/t1/218267/16/36568/137267/653a0e3dF360328a7/40986553c34034a4.jpg",
+                                "http://img30.360buyimg.com/popWareDetail/jfs/t1/192176/1/41401/182786/653a0e49F652b348e/685febbba501ca21.jpg"
                         )
                 ))
         );
