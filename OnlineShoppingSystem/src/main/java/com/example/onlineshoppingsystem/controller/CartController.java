@@ -1,5 +1,6 @@
 package com.example.onlineshoppingsystem.controller;
 
+import com.example.onlineshoppingsystem.dto.CartItemDTO;
 import com.example.onlineshoppingsystem.entity.User;
 import com.example.onlineshoppingsystem.service.CartService;
 import com.example.onlineshoppingsystem.service.UserService;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -19,6 +21,67 @@ public class CartController {
 
     @Autowired
     private CartService cartService;
+
+    // 加入购物车 API
+    @PostMapping
+    public ResponseEntity<Map<String, Object>> addToCart(@RequestBody Map<String, Object> request) {
+        try {
+            // 获取请求参数
+            String skuId = (String) request.get("skuId");
+            Integer count = (Integer) request.get("count");
+
+            // 模拟商品详情
+            Map<String, Object> cartItem = new HashMap<>();
+            cartItem.put("id", "333666");
+            cartItem.put("skuId", skuId);
+            cartItem.put("name", "MonkeyKing护眼霜");
+            cartItem.put("picture", "https://img12.360buyimg.com/n1/jfs/t1/189699/4/52806/137891/673713fdF70464e57/79702edd8560befd.jpg.avif");
+            cartItem.put("price", "66666666.00");
+            cartItem.put("selected", true);
+            cartItem.put("stock", 4654);
+            cartItem.put("count", count);
+
+            // 构建返回结果
+            Map<String, Object> response = new HashMap<>();
+            response.put("code", "1");
+            response.put("msg", "操作成功");
+            response.put("result", cartItem);
+
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            // 处理异常并返回错误响应
+            Map<String, Object> response = new HashMap<>();
+            response.put("code", "10019");
+            response.put("msg", "操作失败");
+            response.put("result", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
+
+    // 获取购物车内容 API
+    @GetMapping
+    public ResponseEntity<Map<String, Object>> getCart() {
+        // 模拟购物车中的商品
+        Map<String, Object> cartItem = new HashMap<>();
+        cartItem.put("id", "333666");
+        cartItem.put("skuId", "300283140");
+        cartItem.put("name", "MonkeyKing护眼霜");
+        cartItem.put("picture", "https://img12.360buyimg.com/n1/jfs/t1/189699/4/52806/137891/673713fdF70464e57/79702edd8560befd.jpg.avif");
+        cartItem.put("price", "66666666.00");
+        cartItem.put("selected", true);
+        cartItem.put("stock", 4654);
+        cartItem.put("count", 1);
+
+        // 构造返回结果
+        Map<String, Object> response = new HashMap<>();
+        response.put("code", "1");
+        response.put("msg", "操作成功");
+        response.put("result", Collections.singletonList(cartItem));
+
+        // 返回响应
+        return ResponseEntity.ok(response);
+    }
+
 
     @Autowired
     private JwtUtil jwtUtil;  // 注入 JwtUtil，用于生成新的 token

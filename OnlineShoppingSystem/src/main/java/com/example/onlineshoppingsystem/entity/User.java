@@ -36,6 +36,9 @@ public class User {
     @Transient
     private transient String account; // 临时字段，不存储在数据库中
 
+    @Transient
+    private  String user_level; // 临时字段，不存储在数据库中
+
     @Column(nullable = false)
     private String token = "";  // 默认 token 值，避免为 null
 
@@ -126,6 +129,10 @@ public class User {
     // 对应 user_level 字段的 getter 和 setter
     public String getUserLevel() {
         return userRole;  // 映射到 user_role 字段
+    }
+
+    public String getUser_level() {
+        return user_level;  // 映射到 user_role 字段
     }
 
     public void setUserLevel(String userLevel) {

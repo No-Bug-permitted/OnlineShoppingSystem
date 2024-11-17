@@ -91,6 +91,21 @@ public class UserService {
         return new ResponseEntity<>("User updated successfully.", HttpStatus.OK);
     }
 
+    public boolean isMerchantExist(String phone) {
+        System.out.println("查询手机号：" + phone);  // 打印查询的手机号
+        Optional<User> user = userRepository.findByPhone(phone);
+        if (user.isPresent()) {
+            System.out.println("找到用户，角色是：" + user.get().getUserRole());  // 打印用户角色
+            return "merchant".equals(user.get().getUserRole());
+        } else {
+            System.out.println("没有找到用户，手机号是：" + phone);  // 打印没有找到用户的情况
+            return false;
+        }
+    }
+
+
+
+
     // 删除用户（软删除）
     @Transactional
     public ResponseEntity<String> deleteUser(Long userId) {

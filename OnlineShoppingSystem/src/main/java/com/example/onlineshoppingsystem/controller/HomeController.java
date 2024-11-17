@@ -65,7 +65,7 @@ public class HomeController {
     private List<NewItem> getNewItemsList() {
         List<NewItem> newItems = new ArrayList<>();
 
-        newItems.add(createNewItem("4008506", "SurFace Pro", "6466.00", "https://img20.360buyimg.com/babel/s1180x940_jfs/t20271115/160232/29/49875/46337/6736a1aaF1205f315/bf0701196a647057.jpg.avif"));
+        newItems.add(createNewItem("4008506", "MonkeyKing护眼霜", "66666666.00", "https://img12.360buyimg.com/n1/jfs/t1/189699/4/52806/137891/673713fdF70464e57/79702edd8560befd.jpg.avif"));
         newItems.add(createNewItem("3996270", "超级大冰箱", "444449.00", "https://imgcps.jd.com/ling-cubic/turing/deliverysoa/6fdbf6243d70b5cc719926bae94e3ef7/cr/s/q70.jpg"));
         newItems.add(createNewItem("4008506", "Herbal Essences洗发水", "666.00", "https://imgcps.jd.com/img-cubic/creative_server_cia_jdcloud/v2/2020219/100016285326/FocusFullshop/CkNqZnMvdDEvMjMxNDk2LzI4LzI1MTQyLzYzMjYwLzY2Yzc3MjMyRjMxZDc2ZjgyLzI0ZDUwM2MyZmE3NzdlNzkucG5nEgU1MDUtdzABOPume0IYChLkuqzpgInlpb3nianmsYfogZoQARgBQhMKD-eJqee-juS7t-abtOS8mBACQhAKDOeri-WNs-aKoui0rRAGQgoKBuS8mOi0qBAHWI7Nvcv0Ag/cr/s/q.jpg"));
         newItems.add(createNewItem("4008506", "爱华仕行李箱", "9999.00", "https://img20.360buyimg.com/babel/s1180x940_jfs/t20271115/160232/29/49875/46337/6736a1aaF1205f315/bf0701196a647057.jpg.avif"));

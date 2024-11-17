@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 
@@ -53,17 +54,28 @@ public class UserController {
         }
     }
 
+    @PostMapping("/debug")
+    public void debug(@RequestBody Map<String, Object> payload) {
+        System.out.println(payload);
+    }
+
     // 登录
     @PostMapping("/login")
     public ResponseEntity<UserResponse> login(@RequestBody User user) {
         try {
+            // 先处理传递的 user_level 字段，并映射到 role
+            String role = user.getUser_level();  //获取用户登录的身份
             // 获取前端传递的手机号（account 字段），将 account 映射为 phone
             String phone = user.getAccount();  // 这里的 phone 是前端传过来的 account 字段
-
             // 检查用户是否存在
             Optional<User> existingUser = userService.findByPhone(phone);
             if (existingUser.isEmpty()) {
                 return new ResponseEntity<>(new UserResponse("0", "User not found", null), HttpStatus.NOT_FOUND);
+            }
+
+            // 检查商家是否存在
+            if (Objects.equals(role, "1") && !userService.isMerchantExist(phone)) {
+                return new ResponseEntity<>(new UserResponse("0", "Merchant not found", null), HttpStatus.NOT_FOUND);
             }
 
             // 验证密码，直接比较明文密码
